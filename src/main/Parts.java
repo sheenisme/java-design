@@ -1,6 +1,6 @@
-package curriculum_design;
+package main;
 
-public class warehouse{
+public class Parts{
 	private int number;
 	private String type;
 	private int total;
@@ -10,13 +10,13 @@ public class warehouse{
 	private String suppliers;
 	private String others;
 	static int max=1;
-	
+
 	//下面是初始化各个字段的函数
 	public void setnumber() {
 		this.number=max++;
 	}
 	
-	public void settype(String type) {
+	public void settype(String type) { 
 		this.type=type;
 	}
 	
@@ -27,10 +27,6 @@ public class warehouse{
 			System.out.println("总量小于或者等于0，输入错误！已设置为默认值100\n");
 			this.total=100;}
 	}
-	
-/*	public void setallowance(int allowance) {
-		this.allowance=allowance;
-	}*/
 	
 	public void setallowance() {
 		this.allowance=gettotal()-getsales();
@@ -102,9 +98,10 @@ public class warehouse{
 	public String getothers() {
 		return others;
 	}
+
 	
-	//构造函数以及自定义的
-	warehouse(){
+	//默认构造函数以及自定义的
+	public Parts(){
 		setnumber();
 		settype("default");
 		settotal(1);
@@ -114,7 +111,8 @@ public class warehouse{
 		setsupplier("default");
 		setothers();
 	}
-	warehouse(String type,int total,int sales,int price,String supplier){
+	
+	public Parts(String type,int total,int sales,int price,String supplier){
 		setnumber();
 		settype(type);
 		settotal(total);

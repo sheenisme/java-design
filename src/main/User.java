@@ -1,4 +1,4 @@
-package curriculum_design;
+package main;
 
 import java.util.Date;
 
@@ -8,11 +8,15 @@ public class User{
 	private Date birth;
 	public static int total;
 	
-	User(String id,String passward,Date birth) {
+	public User(String id,String passward,Date birth) {
 		this.id=id;
 		this.passward=passward;
 		this.birth=birth;
 		total++;
+	}
+	
+	public User(){
+		
 	}
 	
 	public String getid() {
