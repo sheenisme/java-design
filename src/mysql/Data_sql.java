@@ -1,10 +1,12 @@
 package mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 
 public class Data_sql{
@@ -41,7 +43,7 @@ public class Data_sql{
          }
     }
     
-    //显示数据库库存信息
+/*    //显示数据库库存信息
     public Parts[]  showall()
     {
     	try {
@@ -62,22 +64,33 @@ public class Data_sql{
         	System.out.println(e);
         }
 		return null;
-    } 
+    } */
     
     
     
     //入库操作
-    public void in(Parts p)
+    public void in(String head[],String content[])
     {
+    	initsql();
+
     	try {
     		sql=con.createStatement();//创建SQL语句对象
-        	rs=sql.executeQuery("select * from `table`");
-        	System.out.println("编号     类型       总量        余量      销量     价格     供应商      其它 ");
-        	while(rs.next()) {
-        		System.out.printf(rs.getInt("number")+"    "+rs.getString("type")+"     "+rs.getString("total")+"     "
-        		+rs.getString("allowance")+"   "+rs.getString("sales")+"   "+rs.getString("price")+"   "
-        		+rs.getString("supplier")+"   "+rs.getString("others")+"\n");
-        	}
+    		String ss="insert into `table` values (?,?,?,?,?,?,?,?)";//错误示范：+"("+content[0]+","+content[1]+","+content[2]+","+content[3]+","+content[4]+","+content[5]+","+"'content[6]'"+","+"'content[7]'"+")";
+//测试用例代码，可删    		sql.execute("insert into `table` values (11,'erji',10,10,0,5,'akg','kong')");       
+            PreparedStatement preStmt = (PreparedStatement) con.prepareStatement(ss);
+            preStmt.setInt(1, Integer.parseInt(content[0]));
+            preStmt.setString(2,content[1]);
+            preStmt.setInt(3, Integer.parseInt(content[2]));
+            preStmt.setInt(4, Integer.parseInt(content[3]));
+            preStmt.setInt(5, Integer.parseInt(content[4]));
+            preStmt.setInt(6, Integer.parseInt(content[5]));
+            preStmt.setString(7,content[6]);
+            preStmt.setString(8,content[7]);
+            
+            preStmt.executeUpdate();
+           // sql.executeUpdate(ss);    
+            preStmt.close();
+            con.close();
     	}catch(SQLException e) {
         	System.out.println(e);
         }

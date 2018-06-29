@@ -1,7 +1,6 @@
 package main;
 import UI.*;
 import mysql.*;
-
 import java.sql.PreparedStatement;
 
 

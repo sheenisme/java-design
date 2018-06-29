@@ -1,5 +1,7 @@
 package UI;
 import javax.swing.*;
+
+import control.in;
 import mysql.Data_sql;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,9 +24,6 @@ public class Mutual_ui extends JFrame implements ActionListener{
 	JMenuItem item1,item2,item3;//创建菜单项    PS:菜单项放在菜单里，菜单放在菜单条里
 	JMenuItem subitem1,subitem2;//创建子菜单的菜单项
 	
-	public Mutual_ui() {
-		
-	}
 	
 	//管理菜单设置
 	public void manger_menu() {
@@ -88,6 +87,25 @@ public class Mutual_ui extends JFrame implements ActionListener{
     	ds=new Data_sql();
 		wt=new Win_table(ds.getrecord(),ds.getcolumname(),this);
 //		this.add(new JScrollPane(wt.table));调试表格JTable用的，可删除
+		this.add(wt.table);
+		this.add(new JScrollPane(wt.table));
+		this.setVisible(true);
+		this.validate();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	
+	//创建中间的表格的固定位置显示
+	public void center_table(int x,int y,int width,int height) {
+    	ds=new Data_sql();
+		wt=new Win_table(ds.getrecord(),ds.getcolumname(),this);
+//		this.add(new JScrollPane(wt.table));调试表格JTable用的，可删除
+		this.add(wt.table);
+		this.add(new JScrollPane(wt.table));
+		this.setVisible(true);
+		this.setBounds(x, y, width, height);
+		this.validate();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	//设置底部的各个按钮
@@ -102,11 +120,13 @@ public class Mutual_ui extends JFrame implements ActionListener{
 			System.out.println("关于我们\n");//关于我们
 		}
 		else if(e.getSource() == menu3) {
-			window.dispose();
+			this.dispose();
 			System.out.println("退出\n");//退出
 		}
 		else if(e.getSource() == item1) {
-			System.out.println("入库\n");//入库
+			this.dispose();
+			new in();
+			//System.out.println("入库\n");//入库
 		}
 		else if(e.getSource() == item2) {
 			System.out.println("出库\n");//出库

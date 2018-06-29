@@ -89,12 +89,12 @@ public class Login_ui extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		User [] user;
 		user=usersql.getuser();
-		if(input_id.getText().equals(null))
+		if(input_id.getText().isEmpty())
 		{
 			JOptionPane.showMessageDialog(this, "请输入您要登陆的账户！");
 			this.dispose();
 		}
-		else if(new String(input_passward.getPassword()).equals(null))
+		else if(new String(input_passward.getPassword()).isEmpty())
 		{
 			JOptionPane.showMessageDialog(this, "请输入密码！");
 			this.dispose();
@@ -105,7 +105,7 @@ public class Login_ui extends JFrame implements ActionListener{
 			for(;i<User.total;i++) {
 				if(input_id.getText().equals(user[i].getid()) && new String(input_passward.getPassword()).equals(user[i].getpassward())) 
 				{
-					System.out.println("登陆成功\n");
+					//System.out.println("登陆成功\n");
 					jframe.dispose();
 			        mu.manger_menu();
 			        mu.center_table();
