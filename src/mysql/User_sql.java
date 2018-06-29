@@ -1,6 +1,5 @@
 package mysql;
 import java.sql.*;
-import main.*;
 
 /**
  * 用户类数据库

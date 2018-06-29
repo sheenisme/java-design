@@ -14,11 +14,13 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class Mutual_ui extends JFrame implements ActionListener{
 	JFrame window;
+	ActionListener listener;
+	Win_table wt;//创建生成表格组件的类
+	Data_sql ds;//创建配件的数据库类
 	JMenuBar menubar;//创建菜单条
 	JMenu menu1,menu2,menu3,submenu;//创建菜单
 	JMenuItem item1,item2,item3;//创建菜单项    PS:菜单项放在菜单里，菜单放在菜单条里
-	Win_table wt;//创建生成表格组件的类
-	Data_sql ds;//创建配件的数据库类
+	JMenuItem subitem1,subitem2;//创建子菜单的菜单项
 	
 	public Mutual_ui() {
 		
@@ -47,6 +49,17 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		item1=new JMenuItem("配件入库");
 		item2=new JMenuItem("配件出库");
 		item3=new JMenuItem("退货入库");
+		subitem1=new JMenuItem("供应商信息");
+		subitem2=new JMenuItem("配件信息");
+		
+		menu2.addActionListener(this);
+		menu3.addActionListener(this);
+		item1.addActionListener(this);
+		item2.addActionListener(this);
+		item3.addActionListener(this);
+		subitem1.addActionListener(this);
+		subitem2.addActionListener(this);
+		
 		item1.setAccelerator(KeyStroke.getKeyStroke('E'));
 		item2.setAccelerator(KeyStroke.getKeyStroke('Q'));
 		item3.setAccelerator(KeyStroke.getKeyStroke('R'));
@@ -59,12 +72,15 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		menu1.add(submenu);
 		menu1.add(menu2);
 		
-		submenu.add(new JMenuItem("供应商信息"));
-		submenu.add(new JMenuItem("配件信息"));
+
+		submenu.add(subitem1);
+		submenu.add(subitem2);
 		menubar.add(menu1);
 		menubar.add(menu2);
 		menubar.add(menu3);
 		setJMenuBar(menubar);
+		
+
 	}
 	
 	//创建中间的表格显示
@@ -80,8 +96,31 @@ public class Mutual_ui extends JFrame implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
-		
+		if(e.getSource() == menu2) {
+			System.out.println("关于我们\n");//关于我们
+		}
+		else if(e.getSource() == menu3) {
+			window.dispose();
+			System.out.println("退出\n");//退出
+		}
+		else if(e.getSource() == item1) {
+			System.out.println("入库\n");//入库
+		}
+		else if(e.getSource() == item2) {
+			System.out.println("出库\n");//出库
+		}
+		else if(e.getSource() == item3) {
+			System.out.println("退货入库\n");//退货入库
+		}
+		else if(e.getSource() == subitem1) {
+			System.out.println("供货商信息\n");//供货商信息
+		}
+		else if(e.getSource() == subitem2) {
+			System.out.println("配件信息\n");//配件信息
+		}
+		else
+			System.out.println("事件源有误！\n");
 	}	
 }

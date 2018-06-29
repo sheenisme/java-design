@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import main.*;
 import mysql.*;
 
 /**
@@ -67,6 +66,8 @@ public class Login_ui extends JFrame implements ActionListener{
 		box3.add(box);
 		box3.add(cb);
 		box3.add(bt);
+		
+		
 		bt.addActionListener(this);
 		
 		jframe.add(box3);

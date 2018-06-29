@@ -1,4 +1,4 @@
-package main;
+package mysql;
 
 public class Parts{
 	private int number;
