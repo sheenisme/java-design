@@ -25,7 +25,7 @@ public class in extends JFrame implements ActionListener{
 	String [][] data=new String[1][8];
 	public in() {
 		jframe=new JFrame();
-		this.setLayout(new GridLayout(3,1));//确实使用网格布局
+		this.setLayout(new GridLayout(3,1));//使用网格布局
 		init();
 
 		ds=new Data_sql();
@@ -47,7 +47,7 @@ public class in extends JFrame implements ActionListener{
 		setLocation(0,400);
 		con.add(bt,BorderLayout.SOUTH);
 				
-		setTitle("商品入库");
+		setTitle("配件入库");
 		setLocation(480,200);
 		setSize(670,455);
 		setVisible(true);
@@ -97,5 +97,4 @@ public class in extends JFrame implements ActionListener{
         mu.manger_menu();
         mu.center_table();
 	}
-	
 }

@@ -2,6 +2,7 @@ package UI;
 import javax.swing.*;
 
 import control.in;
+import control.out;
 import mysql.Data_sql;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -129,6 +130,8 @@ public class Mutual_ui extends JFrame implements ActionListener{
 			//System.out.println("入库\n");//入库
 		}
 		else if(e.getSource() == item2) {
+			this.dispose();
+			new out();
 			System.out.println("出库\n");//出库
 		}
 		else if(e.getSource() == item3) {

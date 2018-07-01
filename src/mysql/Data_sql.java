@@ -98,17 +98,12 @@ public class Data_sql{
     
     
     //出库
-    public void out()
+    public void out(String key,String content)
     {
+    	initsql();
     	try {
     		sql=con.createStatement();//创建SQL语句对象
-        	rs=sql.executeQuery("select * from `table`");
-        	System.out.println("编号     类型       总量        余量      销量     价格     供应商      其它 ");
-        	while(rs.next()) {
-        		System.out.printf(rs.getInt("number")+"    "+rs.getString("type")+"     "+rs.getString("total")+"     "
-        		+rs.getString("allowance")+"   "+rs.getString("sales")+"   "+rs.getString("price")+"   "
-        		+rs.getString("supplier")+"   "+rs.getString("others")+"\n");
-        	}
+        	sql.execute("delete from `table` where "+key+"="+content);
     	}catch(SQLException e) {
         	System.out.println(e);
         }
