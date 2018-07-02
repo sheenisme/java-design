@@ -18,8 +18,7 @@ public class in extends JFrame implements ActionListener{
 	ActionListener listener;
 	Data_sql ds=new Data_sql();
 	Mutual_ui mu=new Mutual_ui();
-	Win_table wt;
-	JTable tin;
+	JTable tin1,tin2;
 	Container con;
 	String name[]= ds.getcolumname();
 	String [][] data=new String[1][8];
@@ -29,13 +28,13 @@ public class in extends JFrame implements ActionListener{
 		init();
 
 		ds=new Data_sql();
-		wt=new Win_table(ds.getrecord(),ds.getcolumname(),this);
-		wt.table.setLocation(0,150);
-		wt.table.setSize(670,250);
-		add(wt.table,BorderLayout.CENTER);
-		add(new JScrollPane(wt.table),BorderLayout.CENTER);
+		tin2=new JTable(ds.getrecord(),ds.getcolumname());
+		tin2.setCellSelectionEnabled(true); 
+		this.add(tin2);
+		add(new JScrollPane(tin2),BorderLayout.CENTER);
+
 		
-		JScrollPane js=new JScrollPane(tin);
+		JScrollPane js=new JScrollPane(tin1);
 		js.setLocation(0,0);
 		js.setSize(670,150);
 		add(js,BorderLayout.NORTH);
@@ -62,9 +61,9 @@ public class in extends JFrame implements ActionListener{
 		      data[i][j]=String.valueOf(value++);
 		    }
 		  }
-		tin=new JTable(data,name);
-		tin.setCellSelectionEnabled(true); 
-		this.add(tin);
+		tin1=new JTable(data,name);
+		tin1.setCellSelectionEnabled(true); 
+		this.add(tin1);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

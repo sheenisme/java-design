@@ -21,6 +21,13 @@ public class Data_sql{
 	Parts ps[];
 	String columnName[];//字段表名数组
 	String record[][];//记录表（二维）数组
+	private String suppliersrecord[][];
+	private String suppliersname[];
+	private String partsrecord[][];
+	private String partsname[];
+	private String pricerecord[][];
+	private String pricename[];
+	int recordamount;
 	
 	
 	//初始化连接数据库
@@ -98,29 +105,42 @@ public class Data_sql{
     
     
     //出库
-    public void out(String key,String content)
+    public void out(String number,String content,String amount)
     {
     	initsql();
     	try {
     		sql=con.createStatement();//创建SQL语句对象
-        	sql.execute("delete from `table` where "+key+"="+content);
+        	sql.execute("update `table` set allowance = allowance-"+amount+",sales=sales+"+amount+" where "+number+"="+content);
     	}catch(SQLException e) {
         	System.out.println(e);
         }
     }  
     
+ /*   public String[] search(String number ) {
+		try {
+			int a=rs.getRow();
+			int b=columnName.length;
+			int i,j;
+			for(i=0;i<a;i++)
+			{
+				if(record[i][1]==number) {
+					return record[i];
+				}
+			}
+			return record[i];
+		}catch{
+			
+		}
+    	
+    }*/
+   
     //退货入库
-    public void rejected()
+    public void rejected(String number,String content,String amount)
     {
+    	initsql();
     	try {
     		sql=con.createStatement();//创建SQL语句对象
-        	rs=sql.executeQuery("select * from `table`");
-        	System.out.println("编号     类型       总量        余量      销量     价格     供应商      其它 ");
-        	while(rs.next()) {
-        		System.out.printf(rs.getInt("number")+"    "+rs.getString("type")+"     "+rs.getString("total")+"     "
-        		+rs.getString("allowance")+"   "+rs.getString("sales")+"   "+rs.getString("price")+"   "
-        		+rs.getString("supplier")+"   "+rs.getString("others")+"\n");
-        	}
+        	sql.execute("update `table` set allowance = allowance+"+amount+",sales=sales-"+amount+" where "+number+"="+content);
     	}catch(SQLException e) {
         	System.out.println(e);
         }
@@ -149,7 +169,7 @@ public class Data_sql{
     private void setrecord() {
     	setColumnName();
     	try {
-    		int recordamount=rs.getRow();
+    		recordamount=rs.getRow();
     		int length=columnName.length;
     		record=new String[recordamount][length];
     		int i=0;
@@ -192,6 +212,98 @@ public class Data_sql{
 		return record;
     }
     
+    public void setsuppliers() {
+    	setColumnName();
+    	setrecord();
+    	suppliersrecord=new String[recordamount][5];
+    	for(int i=0;i<recordamount;i++) {
+    		suppliersrecord[i][0]=record[i][0];
+        	suppliersrecord[i][1]=record[i][1];
+        	suppliersrecord[i][2]=record[i][2];
+        	suppliersrecord[i][3]=record[i][6];
+        	suppliersrecord[i][4]=record[i][7];
+    	}
+    	
+    	suppliersname=new String[5];
+    	suppliersname[0]=columnName[0];
+    	suppliersname[1]=columnName[1];
+    	suppliersname[2]=columnName[2];
+    	suppliersname[3]=columnName[6];
+    	suppliersname[4]=columnName[7];
+    }
+    
+    public String[] getsuppliername(){
+    	setsuppliers();
+		return suppliersname;
+    	
+    }
+    
+    public String[][] getsupplierrecord(){
+    	setsuppliers();
+    	return suppliersrecord;
+    }
+    
+    public void setparts() {
+    	setColumnName();
+    	setrecord();
+    	partsrecord=new String[recordamount][5];
+    	for(int i=0;i<recordamount;i++) {
+    		partsrecord[i][0]=record[i][0];
+    		partsrecord[i][1]=record[i][1];
+    		partsrecord[i][2]=record[i][3];
+    		partsrecord[i][3]=record[i][5];
+    		partsrecord[i][4]=record[i][7];
+    	}
+    	
+    	partsname=new String[5];
+    	partsname[0]=columnName[0];
+    	partsname[1]=columnName[1];
+    	partsname[2]=columnName[3];
+    	partsname[3]=columnName[5];
+    	partsname[4]=columnName[7];
+    }
+    
+    public String[] getpartsname() {
+    	setparts();
+    	return partsname;
+    }
+    
+    public String[][] getpartsrecord(){
+    	setparts();
+    	return partsrecord;
+    }
+    
+    
+    public void setprice() {
+    	setColumnName();
+    	setrecord();
+    	pricerecord=new String[recordamount][5];
+    	for(int i=0;i<recordamount;i++) {
+    		pricerecord[i][0]=record[i][0];
+    		pricerecord[i][1]=record[i][1];
+    		pricerecord[i][2]=record[i][4];
+    		pricerecord[i][3]=record[i][5];
+    		pricerecord[i][4]=record[i][7];
+    	}
+    	
+    	pricename=new String[5];
+    	pricename[0]=columnName[0];
+    	pricename[1]=columnName[1];
+    	pricename[2]=columnName[4];
+    	pricename[3]=columnName[5];
+    	pricename[4]=columnName[7];
+    }
+    
+    public String[] getpricename() {
+    	setparts();
+    	return pricename;
+    }
+    
+    public String[][] getpricerecord(){
+    	setparts();
+    	return pricerecord;
+    }
+    
     public void close(Connection con)
     {
     	try {
@@ -202,4 +314,3 @@ public class Data_sql{
 		}
     }
 }
-

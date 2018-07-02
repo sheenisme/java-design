@@ -18,11 +18,11 @@ public class Win_table extends JFrame{
 	}	
 	public Win_table(Object obj[][],Object name[],JFrame win) {
 		table=new JTable(obj,name);
-/*		win.add(table);
+		win.add(table);
 		win.add(new JScrollPane(table));
 		win.setVisible(true);
 		win.validate();
-		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void setname(Object name[]) {

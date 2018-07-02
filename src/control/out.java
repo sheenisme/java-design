@@ -12,7 +12,7 @@ import javax.swing.*;
 public class out extends JFrame implements ActionListener{
 	JFrame win=new JFrame();
 	ActionListener linstener;
-	JTextField jt=new JTextField();
+	JTextField jt1,jt2;
 	Button bt;
 	public out() {
 		win.setTitle("配件出库");
@@ -26,17 +26,23 @@ public class out extends JFrame implements ActionListener{
 	}
 	
 	public void init() {
-		JLabel jl=new JLabel("number:");		
+		JLabel j1,j2;
+		j1=new JLabel("number:");
+		j2=new JLabel("出库数量：");	
+		jt1=new JTextField();
+		jt2=new JTextField();
 		//jt.addActionListener(linstener);
-		bt=new Button("删除number对应的所有记录？");
+		bt=new Button("           点击及确认出库？             ");
 		bt.addActionListener(this);
 		
 		
 		Box b1,b2;
 		b1=Box.createHorizontalBox();
 		b2=Box.createVerticalBox();
-		b1.add(jl);
-		b1.add(jt);
+		b1.add(j1);
+		b1.add(jt1);
+		b1.add(j2);
+		b1.add(jt2);
 		b2.add(b1);
 		b2.add(Box.createHorizontalStrut(10));
 		b2.add(bt);
@@ -49,14 +55,18 @@ public class out extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Data_sql ds=new Data_sql();
 		Mutual_ui mu=new Mutual_ui();
-		if(jt.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "请输入您要删除的记录对应的number的值！！！");
+		if(jt1.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "请输入您要出库的记录对应的number的值！！！");
+			this.dispose();
+		}
+		if(jt2.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "请输入您要出库的数量！！！");
 			this.dispose();
 		}
 		else {
-			JOptionPane.showMessageDialog(this, "确定要删除该记录吗？");
+			JOptionPane.showMessageDialog(this, "确定要出库吗？");
 
-			ds.out("number",jt.getText());
+			ds.out("number",jt1.getText(),jt2.getText());
 			win.dispose();
 			mu=new Mutual_ui();
 	        mu.manger_menu();

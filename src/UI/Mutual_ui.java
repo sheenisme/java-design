@@ -3,6 +3,10 @@ import javax.swing.*;
 
 import control.in;
 import control.out;
+import control.pcparts;
+import control.price;
+import control.rejected;
+import control.suppliers;
 import mysql.Data_sql;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +27,7 @@ public class Mutual_ui extends JFrame implements ActionListener{
 	JMenuBar menubar;//创建菜单条
 	JMenu menu1,menu2,menu3,submenu;//创建菜单
 	JMenuItem item1,item2,item3;//创建菜单项    PS:菜单项放在菜单里，菜单放在菜单条里
-	JMenuItem subitem1,subitem2;//创建子菜单的菜单项
+	JMenuItem subitem1,subitem2,subitem3;//创建子菜单的菜单项
 	
 	
 	//管理菜单设置
@@ -51,6 +55,7 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		item3=new JMenuItem("退货入库");
 		subitem1=new JMenuItem("供应商信息");
 		subitem2=new JMenuItem("配件信息");
+		subitem3=new JMenuItem("价格信息");
 		
 		menu2.addActionListener(this);
 		menu3.addActionListener(this);
@@ -59,6 +64,7 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		item3.addActionListener(this);
 		subitem1.addActionListener(this);
 		subitem2.addActionListener(this);
+		subitem3.addActionListener(this);
 		
 		item1.setAccelerator(KeyStroke.getKeyStroke('E'));
 		item2.setAccelerator(KeyStroke.getKeyStroke('Q'));
@@ -75,6 +81,7 @@ public class Mutual_ui extends JFrame implements ActionListener{
 
 		submenu.add(subitem1);
 		submenu.add(subitem2);
+		submenu.add(subitem3);
 		menubar.add(menu1);
 		menubar.add(menu2);
 		menubar.add(menu3);
@@ -88,11 +95,11 @@ public class Mutual_ui extends JFrame implements ActionListener{
     	ds=new Data_sql();
 		wt=new Win_table(ds.getrecord(),ds.getcolumname(),this);
 //		this.add(new JScrollPane(wt.table));调试表格JTable用的，可删除
-		this.add(wt.table);
+/*		this.add(wt.table);
 		this.add(new JScrollPane(wt.table));
 		this.setVisible(true);
 		this.validate();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 	}
 	
 	
@@ -132,16 +139,24 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		else if(e.getSource() == item2) {
 			this.dispose();
 			new out();
-			System.out.println("出库\n");//出库
+			//System.out.println("出库\n");//出库
 		}
 		else if(e.getSource() == item3) {
-			System.out.println("退货入库\n");//退货入库
+			this.dispose();
+			new rejected();
+			//System.out.println("退货入库\n");//退货入库
 		}
 		else if(e.getSource() == subitem1) {
-			System.out.println("供货商信息\n");//供货商信息
+			new suppliers();
+			//System.out.println("供货商信息\n");//供货商信息
 		}
 		else if(e.getSource() == subitem2) {
-			System.out.println("配件信息\n");//配件信息
+			new pcparts();
+			//System.out.println("配件信息\n");//配件信息
+		}
+		else if(e.getSource() == subitem3) {
+			new price();
+			//System.out.println("价格信息\n");//配件信息
 		}
 		else
 			System.out.println("事件源有误！\n");
