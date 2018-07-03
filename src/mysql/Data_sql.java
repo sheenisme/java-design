@@ -7,9 +7,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
-
 
 public class Data_sql{
 	// JDBC 驱动名及数据库 URL 

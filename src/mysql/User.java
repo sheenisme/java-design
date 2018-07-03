@@ -1,5 +1,4 @@
 package mysql;
-
 import java.util.Date;
 
 public class User{
