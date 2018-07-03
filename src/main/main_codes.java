@@ -17,11 +17,11 @@ public class main_codes{
 
 	
     public static void main(String[] args) {     
-        datasql.initsql();
-//       lu.manger_login();
+       // datasql.initsql();
+       lu.manger_login();
         //menu();
-        mu.manger_menu();
-        mu.center_table();
+/*       mu.manger_menu();
+       mu.center_table();*/
 
     }
     

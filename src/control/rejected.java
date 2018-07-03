@@ -1,18 +1,15 @@
 package control;
 import mysql.*;
-
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import UI.*;
 
 @SuppressWarnings("serial")
 public class rejected extends JFrame implements ActionListener{
@@ -59,7 +56,6 @@ public class rejected extends JFrame implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		Data_sql ds=new Data_sql();
-		Mutual_ui mu=new Mutual_ui();
 		if(jt1.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "请输入退货入库的记录对应的number的值！！！");
 			this.dispose();
@@ -70,11 +66,9 @@ public class rejected extends JFrame implements ActionListener{
 		}
 		else {
 			JOptionPane.showMessageDialog(this, "确定要入库吗？");
-			ds.rejected("number",jt1.getText(),jt2.getText());
+			ds.add("number",jt1.getText(),jt2.getText());
 			win.dispose();
-			mu=new Mutual_ui();
-	        mu.manger_menu();
-	        mu.center_table();
+			new repaint();
 		}
 	}
 }

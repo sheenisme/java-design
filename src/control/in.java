@@ -92,8 +92,6 @@ public class in extends JFrame implements ActionListener{
     		data[0][7]=" ";
 		ds.in(name, data[0]);
 		this.dispose();
-		mu=new Mutual_ui();
-        mu.manger_menu();
-        mu.center_table();
+		new repaint();
 	}
 }

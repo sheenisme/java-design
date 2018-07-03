@@ -1,6 +1,5 @@
 package control;
 import mysql.*;
-import UI.*;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -54,7 +53,6 @@ public class out extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Data_sql ds=new Data_sql();
-		Mutual_ui mu=new Mutual_ui();
 		if(jt1.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "请输入您要出库的记录对应的number的值！！！");
 			this.dispose();
@@ -68,9 +66,7 @@ public class out extends JFrame implements ActionListener{
 
 			ds.out("number",jt1.getText(),jt2.getText());
 			win.dispose();
-			mu=new Mutual_ui();
-	        mu.manger_menu();
-	        mu.center_table();
+			new repaint();
 		}
 	}
 }

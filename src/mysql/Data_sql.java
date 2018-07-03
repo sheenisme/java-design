@@ -7,6 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 
 
 public class Data_sql{
@@ -50,6 +52,20 @@ public class Data_sql{
          }
     }
     
+    //判断数据库信息的
+    public boolean judge(){
+    	initsql();
+    	setrecord();
+    	for(int i=1;i<recordamount;i++) {
+    		if(Integer.parseInt(record[i-1][2]) != (Integer.parseInt(record[i-1][3])+Integer.parseInt(record[i-1][4])))
+    		{
+    			//JOptionPane.showMessageDialog(this, "number为："+record[i][0]+"的记录库存信息有问题，请核对！！！！");
+    			System.out.println("number为："+record[i-1][0]+"的记录库存信息有问题，请核对！！！！");
+    			//return false;
+    		}
+    	}
+    	return true;
+    }
 /*    //显示数据库库存信息
     public Parts[]  showall()
     {
@@ -135,7 +151,7 @@ public class Data_sql{
     }*/
    
     //退货入库
-    public void rejected(String number,String content,String amount)
+    public void add(String number,String content,String amount)
     {
     	initsql();
     	try {
