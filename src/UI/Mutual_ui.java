@@ -49,7 +49,7 @@ public class Mutual_ui extends JFrame implements ActionListener{
 		submenu=new JMenu("仓库信息");
 		item1=new JMenuItem("配件入库");
 		item2=new JMenuItem("配件出库");
-		item3=new JMenuItem("退货入库");
+		item3=new JMenuItem("退货回库");
 		subitem1=new JMenuItem("供应商信息");
 		subitem2=new JMenuItem("配件信息");
 		subitem3=new JMenuItem("价格信息");

@@ -18,7 +18,7 @@ public class rejected extends JFrame implements ActionListener{
 	JTextField jt1,jt2;
 	Button bt;
 	public rejected() {
-		win.setTitle("配件出库");
+		win.setTitle("配件回库");
 		init();
 		
 		win.setLocation(480,300);
@@ -35,7 +35,7 @@ public class rejected extends JFrame implements ActionListener{
 		jt1=new JTextField();
 		jt2=new JTextField();
 		//jt.addActionListener(linstener);
-		bt=new Button("    点击即确认可以进行二次销售，并入库！       ");
+		bt=new Button("    点击即确认可以进行二次销售，并回库！       ");
 		bt.addActionListener(this);
 		
 		
@@ -57,15 +57,15 @@ public class rejected extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Data_sql ds=new Data_sql();
 		if(jt1.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "请输入退货入库的记录对应的number的值！！！");
+			JOptionPane.showMessageDialog(this, "请输入退货回库的记录对应的number的值！！！");
 			this.dispose();
 		}
 		if(jt2.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "请输入您要入库的数量！！！");
+			JOptionPane.showMessageDialog(this, "请输入您要回库的数量！！！");
 			this.dispose();
 		}
 		else {
-			JOptionPane.showMessageDialog(this, "确定要入库吗？");
+			JOptionPane.showMessageDialog(this, "确定要回库吗？");
 			ds.add("number",jt1.getText(),jt2.getText());
 			win.dispose();
 			new repaint();

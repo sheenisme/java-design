@@ -36,7 +36,6 @@ public class User_sql{
     
     /**
      * 从数据库获取user表中的user
-     * @return
      */
 	public User[] getuser() {
 		int i=0;

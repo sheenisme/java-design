@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class Data_sql{
 	// JDBC 驱动名及数据库 URL 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/pc stock control?&useSSL=false&serverTimezone=UTC";//"jdbc:mysql://localhost：3306/pc stock control?&useSSL=false&serverTimezone=UTC";
+    static final String DB_URL ="jdbc:mysql://localhost:3306/pc stock control?&useSSL=false&serverTimezone=UTC";//"jdbc:mysql://localhost：3306/pc stock control?&useSSL=true";
     // 数据库的用户名与密码
     static final String USER = "root";
     static final String PASS = "";
